@@ -17,6 +17,7 @@ const cells = document.querySelectorAll('.cell');
 startGame();
 
 function startGame() {
+	document.body.style.backgroundColor = colors[Math.floor(Math.random() * 16)];
 	document.querySelector(".endgame").style.display = "none";
 	origBoard = Array.from(Array(9).keys());
 	for (var i = 0; i < cells.length; i++) {
@@ -27,10 +28,14 @@ function startGame() {
 }
 
 function turnClick(square) {
-  document.body.style.backgroundColor = colors[Math.floor(Math.random() * 16)];
+
 	if (typeof origBoard[square.target.id] == 'number') {
+		document.body.style.backgroundColor = colors[Math.floor(Math.random() * 16)];
 		turn(square.target.id, human)
 		if (!checkWin(origBoard, human) && !checkTie()) turn(bestSpot(), computer);
+	}
+	else {
+		alert("Please make your move on another square.");
 	}
 }
 
